@@ -122,7 +122,7 @@ $('#change').click(function(){
         console.log("Failed to load image.");
     };
 });
-$('#playMedia').click(function(){
+$('#playpause').click(function playMedia(){
     //playMedia();
     //function playMedia(){
         if (!currentMediaSession) {
