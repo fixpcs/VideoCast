@@ -130,12 +130,12 @@ function playMedia(){
         }
         var playpause=document.getElementById("playpause");
         if (playpause.innerHTML=='Play') {
-            currentMediaSession.play(null,this.mediaCommandSuccessCallback.bind(this,"playing started for " + currentMediaSession.sessionId),onLoadError);
+            currentMediaSession.play(null,mediaCommandSuccessCallback.bind(this,"playing started for " + currentMediaSession.sessionId),onLoadError);
             playpause.innerHTML=='Pause';
         }
         else {
             if (playpause.innerHTML=='Pause') {
-                currentMediaSession.pause(null,this.mediaCommandSuccessCallback.bind(this,"paused" + currentMediaSession.sessionId),onLoadError);
+                currentMediaSession.pause(null,mediaCommandSuccessCallback.bind(this,"paused" + currentMediaSession.sessionId),onLoadError);
                 playpause.innerHTML='Play';
             }
         }
