@@ -1,3 +1,4 @@
+var currentMediaSession=null;
 var session=null;
 $(document).ready(function(){
     var loadCastInterval=setInterval(function(){
@@ -19,7 +20,9 @@ $(document).ready(function(){
         session=e;
         console.log('New session');
         if (session.media.length != 0) {
-            console.log('Found ' + session.media.length + ' sessions.');
+            console.log('Found ' + session.media.length + ' existing media sessions.');
+            onMediaDiscovered('onRequestSessionSuccess',session.media[0]);
+            session.addMediaListener(onMediaDiscovered.bind(this,'addMediaListener'));
         }
     };
     function receiverListener(e) {
@@ -61,7 +64,7 @@ $('#castme').click(function(){
         mediaInfo.contentType='video/mp4';
         var request=new chrome.cast.media.LoadRequest(mediaInfo);
         request.autoplay=true;
-        session.loadMedia(request,onLoadSuccess,onLoadError);
+        session.loadMedia(request,onMediaDiscovered.bind(this,'loadMedia'),onLoadError);
     };
     function onLoadSuccess() {
         console.log("Successfully loaded image.");
@@ -81,6 +84,24 @@ $('#castme').click(function(){
     };
     function onMediaDiscovered(how,media){
         console.log("New media session ID: " + media.mediaSessionId + '(' + how + ')');
+        currentMediaSession=mediaSession;
+        document.getElementById("playpause").innerHTML='Pause';
+    }
+    function playMedia(){
+        if (!currentMediaSession) {
+            return;
+        }
+        var playpause=document.getElementById("playpause");
+        if (playpause.innerHTML=='Play') {
+            currentMediaSession.play(null,mediaCommandSuccessCallback.bind(this,"playing started for " + currentMediaSession.sessionId),onLoadError);
+            playpause.innerHTML=='Pause';
+        }
+        else {
+            if (playpause.innerHTML=='Pause') {
+                currentMediaSession.pause(null,mediaCommandSuccessCallback.bind(this,"paused" + currentMediaSession.sessionId),onLoadError);
+                playpause.innerHTML='Play';
+            }
+        }
     }
 });
 $('#stop').click(function(){
