@@ -137,3 +137,4 @@ $('#change').click(function(){
         console.log("Failed to load image.");
     };
 });
+
