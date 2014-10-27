@@ -87,6 +87,22 @@ $('#castme').click(function(){
         currentMediaSession=media;
         document.getElementById("playpause").innerHTML='Pause';
     }
+    function playMedia(){
+        if (!currentMediaSession) {
+            return;
+        }
+        var playpause=document.getElementById("playpause");
+        if (playpause.innerHTML=='Play') {
+            currentMediaSession.play(null,mediaCommandSuccessCallback.bind(this,"playing started for " + currentMediaSession.sessionId),onLoadError);
+            playpause.innerHTML=='Pause';
+        }
+        else {
+            if (playpause.innerHTML=='Pause') {
+                currentMediaSession.pause(null,mediaCommandSuccessCallback.bind(this,"paused" + currentMediaSession.sessionId),onLoadError);
+                playpause.innerHTML='Play';
+            }
+        }
+    }
 });
 $('#stop').click(function(){
     stopApp();
@@ -121,22 +137,4 @@ $('#change').click(function(){
         console.log("Failed to load image.");
     };
 });
-$('#playpause').click(function(){
-    playMedia();
-    function playMedia(){
-        if (!currentMediaSession) {
-            return;
-        }
-        var playpause=document.getElementById("playpause");
-        if (playpause.innerHTML=='Play') {
-            currentMediaSession.play(null,mediaCommandSuccessCallback.bind(this,"playing started for " + currentMediaSession.sessionId),onLoadError);
-            playpause.innerHTML=='Pause';
-        }
-        else {
-            if (playpause.innerHTML=='Pause') {
-                currentMediaSession.pause(null,mediaCommandSuccessCallback.bind(this,"paused" + currentMediaSession.sessionId),onLoadError);
-                playpause.innerHTML='Play';
-            }
-        }
-    }
-});
+
