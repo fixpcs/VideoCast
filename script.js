@@ -122,9 +122,9 @@ $('#change').click(function(){
         console.log("Failed to load image.");
     };
 });
-$('#playpause').click(function(){
+$('#playMedia').click(function(){
     //playMedia();
-    function playMedia(){
+    //function playMedia(){
         if (!currentMediaSession) {
             return;
         }
@@ -139,5 +139,5 @@ $('#playpause').click(function(){
                 playpause.innerHTML='Play';
             }
         }
-    }
+    //}
 });
