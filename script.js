@@ -122,6 +122,7 @@ $('#change').click(function(){
     };
 });
 $('#playpause').click(function(){
+    playMedia();
     function playMedia(){
         if (!currentMediaSession) {
             return;
@@ -138,4 +139,4 @@ $('#playpause').click(function(){
             }
         }
     }
-})
+});
