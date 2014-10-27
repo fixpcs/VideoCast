@@ -84,7 +84,7 @@ $('#castme').click(function(){
     };
     function onMediaDiscovered(how,media){
         console.log("New media session ID: " + media.mediaSessionId + '(' + how + ')');
-        currentMediaSession=mediaSession;
+        currentMediaSession=media;
         document.getElementById("playpause").innerHTML='Pause';
     }
     function playMedia(){
