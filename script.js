@@ -141,3 +141,11 @@ function playMedia(){
         }
     //}
 };
+function mediaCommandSuccessCallback(info) {
+    console.log(info);
+    appendMessage(info);
+};
+function appendMessage(message) {
+    var dw = document.getElementById('debugmessage');
+    dw.innerHTML += '\n' + JSON.stringify(message);
+};
