@@ -67,11 +67,11 @@ $('#castme').click(function(){
         session.loadMedia(request,onMediaDiscovered.bind(this,'loadMedia'),onLoadError);
     };
     function onLoadSuccess() {
-        console.log("Successfully loaded image.");
+        console.log("Successfully loaded video.");
         
     };
     function onLoadError() {
-        console.log("Failed to load image.");
+        console.log("Failed to load video.");
     };
     function sessionUpdateListener(isAlive){
         var message=isAlive ? 'Session Updated' : 'Session Removed';
@@ -115,11 +115,11 @@ $('#change').click(function(){
         session.loadMedia(request,onLoadSuccess,onLoadError);
     };
     function onLoadSuccess() {
-        console.log("Successfully loaded image.");
+        console.log("Successfully loaded video.");
         
     };
     function onLoadError() {
-        console.log("Failed to load image.");
+        console.log("Failed to load video.");
     };
 });
 function playMedia(){
@@ -148,4 +148,7 @@ function mediaCommandSuccessCallback(info) {
 function appendMessage(message) {
     var dw = document.getElementById('debugmessage');
     dw.innerHTML += '\n' + JSON.stringify(message);
+};
+function onLoadError() {
+    console.log("Failed to play/pause video.");
 };
