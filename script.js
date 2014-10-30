@@ -122,7 +122,7 @@ $('#change').click(function(){
         console.log("Failed to load video.");
     };
 });
-$('#playpause')function playMedia(){
+$('#playpause'),click(function playMedia(){
     //playMedia();
     //function playMedia(){
         if (!currentMediaSession) {
