@@ -123,7 +123,7 @@ $('#change').click(function(){
     };
 });
 $('#playpause').click(function(){
-    //playMedia();
+    playMedia();
     function playMedia(){
         if (!currentMediaSession) {
             return;
