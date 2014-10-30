@@ -130,12 +130,12 @@ function playMedia(){
     var playpause=document.getElementById("playpause");
     if (playpause.innerHTML=='Play') {
         currentMediaSession.play(null,mediaCommandSuccessCallback.bind(this,"playing started for " + currentMediaSession.sessionId),onLoadError);
-            playpause.innerHTML=='Pause';
+            playpause.innerHTML='Pause';
     }
     else {
         if (playpause.innerHTML=='Pause') {
             currentMediaSession.pause(null,mediaCommandSuccessCallback.bind(this,"paused" + currentMediaSession.sessionId),onLoadError);
-                playpause.innerHTML=='Play';
+                playpause.innerHTML='Play';
         }
     }
 };
