@@ -122,7 +122,7 @@ $('#change').click(function(){
         console.log("Failed to load video.");
     };
 });
-function playMedia(){
+$('#playpause')function playMedia(){
     //playMedia();
     //function playMedia(){
         if (!currentMediaSession) {
@@ -140,10 +140,11 @@ function playMedia(){
             }
         }
     //}
-};
-function mediaCommandSuccessCallback(info) {
-    console.log(info);
-};
-function onLoadError() {
-    console.log("Failed to play/pause video.");
-};
+
+    function mediaCommandSuccessCallback(info) {
+        console.log(info);
+    };
+    function onLoadError() {
+        console.log("Failed to play/pause video.");
+    };
+});
