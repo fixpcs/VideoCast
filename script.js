@@ -122,9 +122,9 @@ $('#change').click(function(){
         console.log("Failed to load video.");
     };
 });
-$('#playpause').click(function playMedia(){
+$('#playpause').click(function(){
     //playMedia();
-    //function playMedia(){
+    function playMedia(){
         if (!currentMediaSession) {
             return;
         }
@@ -139,8 +139,7 @@ $('#playpause').click(function playMedia(){
                 playpause.innerHTML='Play';
             }
         }
-    //}
-
+    };
     function mediaCommandSuccessCallback(info) {
         console.log(info);
     };
