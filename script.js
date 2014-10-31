@@ -1,5 +1,7 @@
 var currentMediaSession=null;
 var session=null;
+var progressFlag =1;
+var mediaCurrentTime=0;
 $(document).ready(function(){
     var loadCastInterval=setInterval(function(){
         if (chrome.cast.isAvailable) {
@@ -86,8 +88,25 @@ $('#castme').click(function(){
         console.log("New media session ID: " + media.mediaSessionId + '(' + how + ')');
         currentMediaSession=media;
         document.getElementById("playpause").innerHTML='Pause';
+        media.addUpdateListener(onMediaStatusUpdate);
+        mediaCurrentTime=currentMediaSession.currentTime;
     }
-    
+    function onMediaStatusUpdate(isAlive){
+        if (progressFlag) {
+            document.getElementById("progress").value=parseInt(100 * currentMediaSession.currentTime/currentMediaSession.media.duration);
+        }
+    }
+    function seekMedia(pos){
+        progressFlag=0;
+        var request=new chrome.cast.media.SeekRequest();
+        
+        request.currentTime=pos * currentMediaSession.media.duration/100;
+        currentMediaSession.seek(request,onSeekSuccess.bind(this,'media seek done'),onLoadError);
+    }
+    function onSeekSuccess(info){
+        console.log(info);
+        setTimeout(function(){progressFlag=1},1500);
+    }
 });
 $('#stop').click(function(){
     stopApp();
